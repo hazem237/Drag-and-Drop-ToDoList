@@ -251,7 +251,10 @@ form {
   width: 100%;
   color: #497174;
 }
-
+form > input
+{
+  color: #497174;
+}
 fieldset {
   margin: 0;
   padding: 0;
@@ -351,7 +354,10 @@ textarea {
 textarea[rows] {
   height: auto;
 }
-
+input
+{
+  color: black
+}
 input:disabled,
 input[readonly],
 textarea:disabled,

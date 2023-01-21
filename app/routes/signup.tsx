@@ -1,5 +1,6 @@
 import { ActionArgs, ActionFunction, json, LinksFunction, redirect } from "@remix-run/node";
 import { Link, useActionData, useSearchParams } from "@remix-run/react";
+import { createUser } from "~/model/user.server";
 // import { createUser } from "~/model/user.server";
 
 import stylesUrl from "~/styles/login.css";
@@ -35,19 +36,19 @@ function validateUsername(username: unknown) {
     return "/jokes";
   }
 
-// export const action:ActionFunction=async({request} : ActionArgs)=>{
-//    const form = await request.formData()
-//    const name = form.get('username')
-//    const password = form.get('password')
-//    const AnyMissingDataError = {
-//     username: name ? null : "name is reqired",
-//     password: password ? null : "password is reqired",
-//   };
-//   if (Object.values(AnyMissingDataError).some((el) => el)) {
-//     return json<ActionData>(AnyMissingDataError); }
-//    await createUser({username:name , passwordHash:password})
-//    return redirect('..')
-// }
+export const action:ActionFunction=async({request} : ActionArgs)=>{
+   const form = await request.formData()
+   const name = form.get('username')
+   const password = form.get('password')
+   const AnyMissingDataError = {
+    username: name ? null : "name is reqired",
+    password: password ? null : "password is reqired",
+  };
+  if (Object.values(AnyMissingDataError).some((el) => el)) {
+    return json<ActionData>(AnyMissingDataError); }
+   await createUser({username:name , passwordHash:password})
+   return redirect('..')
+}
 
 export default function Login() {
   const [searchParams] = useSearchParams();
@@ -64,7 +65,7 @@ export default function Login() {
                 <em style={{ color: "red" }}>{AnyMissingDataError.username}</em>
               ) : null}
             </label>
-            <input type="text" id="username-input" name="username" />
+            <input type="text" id="username-input" name="username" style={{color:"black"}}/>
           </div>
           <div>
             <label htmlFor="password-input">
@@ -73,7 +74,7 @@ export default function Login() {
                 <em style={{ color: "red" }}>{AnyMissingDataError.password}</em>
               ) : null}
             </label>
-            <input id="password-input" name="password" type="password" />
+            <input id="password-input" name="password" type="password" style={{color:"black"}} />
           </div>
           <button type="submit" className="button">
             Sign up

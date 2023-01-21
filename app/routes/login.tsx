@@ -6,6 +6,7 @@ import {
   redirect,
 } from "@remix-run/node";
 import { Link, useActionData, useSearchParams } from "@remix-run/react";
+import { createUserSession, login } from "~/model/user.server";
 //   import invariant from "tiny-invariant";
 //   import { createUserSession, login } from "~/model/user.server";
 
@@ -28,25 +29,25 @@ type ActionData =
     if (signup === "signup") {
       return redirect("/signup");
     }
-    // const loginType = form.get("loginType");
+    const loginType = form.get("loginType");
 
-    // const username = form.get("username");
+    const username = form.get("username");
 
-    // const password = form.get("password");
-    // console.log(username, password);
-    // const user = await login(username, password);
-    // console.log({ user });
-    // if (!user) {
-    //   return json({ message: "There's no user" });
-    // }
-    // const AnyMissingDataError = {
-    //   username: username ? null : "name is reqired",
-    //   password: password ? null : "password is reqired",
-    // };
-    // if (Object.values(AnyMissingDataError).some((el) => el)) {
-    //   return json<ActionData>(AnyMissingDataError);
-    // }
-    // return createUserSession(user.id, "/jokes");
+    const password = form.get("password");
+    console.log(username, password);
+    const user = await login(username, password);
+    console.log({ user });
+    if (!user) {
+      return json({ message: "There's no user" });
+    }
+    const AnyMissingDataError = {
+      username: username ? null : "name is reqired",
+      password: password ? null : "password is reqired",
+    };
+    if (Object.values(AnyMissingDataError).some((el) => el)) {
+      return json<ActionData>(AnyMissingDataError);
+    }
+    return createUserSession(user.id, "/tasks");
   };
 
 export default function Login() {
@@ -57,11 +58,11 @@ export default function Login() {
         <form method="post">
           <div>
             <label htmlFor="username-input">Username </label>
-            <input type="text" id="username-input" name="username" />
+            <input type="text" id="username-input" name="username" style={{color:"black"}}/>
           </div>
           <div>
             <label htmlFor="password-input">Password</label>
-            <input id="password-input" name="password" type="password" />
+            <input id="password-input" name="password" type="password" style={{color:"black"}}/>
           </div>
           <button type="submit" className="button" name="login">
             Log In
