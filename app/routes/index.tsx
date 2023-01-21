@@ -9,15 +9,15 @@ export const links: LinksFunction = () => {
 export default function Index() {
   return (
     <div className="container">
-    <div className="title-container">
-      <h1>
-        Swapy
-      </h1>
-      <h2>See your tasks done</h2>
-    </div>
-    <div className="btn-container">
-      <Link to={'signin'} className="signin-btn">SignIn</Link>
-    </div>
+      <div className="title-container">
+        <h1>Swapy</h1>
+        <h2>See your tasks done</h2>
+      </div>
+      <div className="btn-container">
+        <Link to={"login"} className="button">
+          LogIn
+        </Link>
+      </div>
     </div>
   );
 }
