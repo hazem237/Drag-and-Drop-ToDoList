@@ -4,64 +4,52 @@ import { Link } from "@remix-run/react";
 import React from "react";
 import { json, LoaderFunction, useLoaderData } from "react-router";
 import { getColumn, getTasks, getToDoTasks } from "~/model/task.server";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { getUser, getUserId } from "~/model/user.server";
 import stylesUrl from "~/styles/task.css";
+import Header from "~/components/header";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
 };
 
-export const loader = async ({ request }: LoaderArgs) => {
-  console.log("user", await getUserId(request));
-  const tasksListItems = await getTasks(request);
-  const user = await getUser(request);
-  const columns = await getColumn();
-  const toDo = await getToDoTasks(request);
+type loaderData = {
+  tasksListItems: Awaited<ReturnType<typeof getTasks>>;
+  columns: Awaited<ReturnType<typeof getColumn>>;
+  user: Awaited<ReturnType<typeof getUser>>;
+};
 
-  return json({
+export const loader = async ({ request }: LoaderArgs) => {
+  const tasksListItems = await getTasks(request);
+  const columns = await getColumn();
+  const user = await getUser(request);
+  return json<loaderData>({
     tasksListItems,
     user,
-    toDo,
+    columns,
   });
 };
+
 export default function tasks() {
-  const data = useLoaderData();
+  const data = useLoaderData() as loaderData;
+  const arr = [1, 2, 3, 4, 5];
   return (
     <div className="task-layout">
-      <header>
-        <h2>
-          <Link to="/tasks">
-            <span className="title">Swapy</span>
-          </Link>
-        </h2>
-        <div className="welcome">
-          <span className="Hi">{`Hi ${data.user.username}`}</span>
-          <form action="/logout" method="post" className="logout-form">
-            <button type="submit" className="button">
-              Logout
-            </button>
-          </form>
-        </div>
-      </header>
+      <Header username={data.user?.username} />
       <main className="tasks-main">
-        <div className="main-child">
-          <h2>to Do</h2>
-          {data.toDo.map((t) => (
-            <div className="single-task">{t.title}</div>
-          ))}
-        </div>
-        <div className="main-child">
-          <h2>Doing</h2>
-          {data.toDo.map((t) => (
-            <div className="single-task">{t.title}</div>
-          ))}
-        </div>
-        <div className="main-child">
-          <h2>Done</h2>
-          {data.toDo.map((t) => (
-            <div className="single-task">{t.title}</div>
-          ))}
-        </div>
+        {data.columns.map((c) => {
+          const tasks = data.tasksListItems.filter(
+            (task) => task.ColumnsId === c.id
+          );
+          return (
+            <div className="main-child" key={c.id}>
+              <h2>{c.title}</h2>
+              {tasks.map((t) => {
+                return <div className="single-task" key={t.id}>{t.title}</div>;
+              })}
+            </div>
+          );
+        })}
       </main>
     </div>
   );
