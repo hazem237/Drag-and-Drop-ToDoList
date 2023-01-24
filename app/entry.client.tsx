@@ -1,5 +1,6 @@
 import { RemixBrowser } from "@remix-run/react";
 import { startTransition, StrictMode } from "react";
+import { resetServerContext } from "react-beautiful-dnd";
 import { hydrateRoot } from "react-dom/client";
 
 function hydrate() {
