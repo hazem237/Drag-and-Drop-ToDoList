@@ -71,6 +71,7 @@ export default function tasks() {
                             key={task.id}
                             draggableId={task.id}
                             index={index}
+                            
                           >
                             {(provided) => {
                               console.log("test2", provided.draggableProps);
