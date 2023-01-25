@@ -27,3 +27,15 @@ export async function getToDoTasks(request) {
 export async function getColumns() {
     return prisma.columns.findMany();   
 }
+
+export async function editTaskCoulmn(taskId:string , coulmnId:string)
+{
+  return prisma.task.update({
+    where: {
+      id: taskId,
+    },
+    data: {
+      ColumnsId: coulmnId,
+    },
+  })
+}
