@@ -108,7 +108,9 @@ export default function tasks() {
                         <h3>
                           {column.title} {provided.placeholder}
                         </h3>
-                        <Link className="single-task" to={column.id}>New +</Link>
+                        <Link className="new" to={column.id}>
+                          New +
+                        </Link>
                         {tasks.map((task, index) => {
                           return (
                             <Draggable
@@ -122,9 +124,17 @@ export default function tasks() {
                                     ref={provided.innerRef}
                                     {...provided.dragHandleProps}
                                     {...provided.draggableProps}
-                                    className="single-task"
+                                    className={
+                                      column.title == "Done"
+                                        ? "Done-task"
+                                        : "single-task"
+                                    }
                                   >
-                                    {task.title}
+                                    {column.title == "Done" ? (
+                                      <s>{task.title}</s>
+                                    ) : (
+                                      task.title
+                                    )}
                                   </div>
                                 );
                               }}
@@ -138,7 +148,7 @@ export default function tasks() {
               );
             })}
           </DragDropContext>
-          <Outlet/>
+          <Outlet />
         </main>
       )}
     </div>

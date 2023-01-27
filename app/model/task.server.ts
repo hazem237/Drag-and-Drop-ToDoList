@@ -25,11 +25,10 @@ export async function getToDoTasks(request) {
   });
 }
 export async function getColumns() {
-    return prisma.columns.findMany();   
+  return prisma.columns.findMany();
 }
 
-export async function editTaskCoulmn(taskId:string , coulmnId:string)
-{
+export async function editTaskCoulmn(taskId: string, coulmnId: string) {
   return prisma.task.update({
     where: {
       id: taskId,
@@ -37,5 +36,15 @@ export async function editTaskCoulmn(taskId:string , coulmnId:string)
     data: {
       ColumnsId: coulmnId,
     },
+  });
+}
+export async function createTask(task) {
+  return prisma.task.create({ data: task });
+}
+
+export async function getRequiredCoulmn(coulmnId)
+{
+  return prisma.columns.findUnique({
+    where:{id:coulmnId}
   })
 }

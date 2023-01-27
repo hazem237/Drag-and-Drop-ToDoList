@@ -13,7 +13,6 @@ model task {
   updatedAt DateTime @updatedAt
   title     String
   content   String
-  isDone    Boolean
   UserId    String
   ColumnsId String
   Columns   Columns  @relation(fields: [ColumnsId], references: [id], onDelete: Cascade)

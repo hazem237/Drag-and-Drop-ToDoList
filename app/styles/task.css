@@ -67,14 +67,29 @@ header {
 }
 .main-child {
   background-color: var(--color-foreground);
-  color: #eff5f5;
+  color: var(--color-foreground);
   border: 1px solid black;
   width: 30%;
   display: flex;
   flex-direction: column;
+  padding: 14px;
+  border-radius: 4px;
+  height: max-content;
+  min-height: 400px;
+}
+.new
+{
+  background-color: #eff5f55a;
+  color: #497174;
+  margin-top: 10px;
+  width: 100%;
+  height: 45px;
   padding: 10px;
   border-radius: 4px;
-  height: 400px;
+}
+.new:hover
+{
+  background-color: #4971745d;
 }
 .single-task {
   background-color: #eff5f5;
@@ -85,11 +100,17 @@ header {
   padding: 10px;
   border-radius: 4px;
 }
-.jokes-main .container {
-  display: flex;
-  gap: 1rem;
-  background-color: antiquewhite;
+.Done-task
+{
+  background-color: rgba(117, 216, 117, 0.59);
+  color: #497174;
+  margin-top: 10px;
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  border-radius: 4px;
 }
+
 
 .jokes-list {
   max-width: 12rem;
