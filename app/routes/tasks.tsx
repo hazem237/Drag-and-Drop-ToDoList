@@ -4,7 +4,7 @@ import {
   LinksFunction,
   LoaderArgs,
 } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, Outlet, useFetcher, useLoaderData } from "@remix-run/react";
 import React, { useEffect, useState } from "react";
 import {
   editTaskCoulmn,
@@ -21,7 +21,6 @@ import {
 import { getUser, getUserId } from "~/model/user.server";
 import stylesUrl from "~/styles/task.css";
 import Header from "~/components/Header";
-import { PrismaClient } from "@prisma/client";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: stylesUrl }];
@@ -51,7 +50,7 @@ export default function tasks() {
     setwinReady(true);
   }, []);
 
-  const onDragEnd =  (
+  const onDragEnd = (
     result,
     columns: Awaited<ReturnType<typeof getColumn>>
   ) => {
@@ -72,7 +71,6 @@ export default function tasks() {
       console.log("task", desttasks);
       const [removed] = sourceItems.splice(source.index, 1);
       removed.ColumnsId = destColumn.id;
-      
     } else {
       console.log("2");
       const column = columns[source.droppableId];
@@ -102,13 +100,15 @@ export default function tasks() {
                         {...provided.droppableProps}
                         className="main-child"
                         style={{
-                            background: snapshot.isDraggingOver
-                              ? "lightblue"
-                              : "lightgrey"}}
+                          background: snapshot.isDraggingOver
+                            ? "lightblue"
+                            : "lightgrey",
+                        }}
                       >
                         <h3>
                           {column.title} {provided.placeholder}
                         </h3>
+                        <Link className="single-task" to={column.id}>New +</Link>
                         {tasks.map((task, index) => {
                           return (
                             <Draggable
@@ -138,6 +138,7 @@ export default function tasks() {
               );
             })}
           </DragDropContext>
+          <Outlet/>
         </main>
       )}
     </div>

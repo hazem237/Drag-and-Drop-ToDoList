@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@300&display=swap");
 
 :root {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-family: "Comfortaa", cursive;
   font-family: "Montserrat", sans-serif;
   --hs-links: 48 100%;
@@ -42,17 +44,13 @@ html {
   outline: auto;
 }
 
-:focus {
-  outline: var(--color-links) solid 2px;
-  outline-offset: 2px;
-}
-
 html,
 body {
   padding: 0;
   margin: 0;
   color: var(--color-foreground);
   background-color: var(--color-background);
+  font-family: 'Courier New', Courier, monospace;
 }
 
 [data-light] {
@@ -73,13 +71,13 @@ body {
 }
 
 a {
-  color: var(--color-links);
+  color: var(--color-foreground);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--color-links-hover);
-  text-decoration: underline;
+  color: var(--color-background);
+  text-decoration: none;
 }
 
 hr {
@@ -292,9 +290,8 @@ textarea {
   height: 2.5rem;
   margin: 0;
   padding: 0.5rem 0.75rem;
-  border: 1px solid var(--color-border);
   border-radius: 4px;
-  background-color: hsl(0 0% 100% / 10%);
+  background-color: rgb(255, 255, 255);
   background-blend-mode: luminosity;
   box-shadow: none;
   font-family: var(--font-body);

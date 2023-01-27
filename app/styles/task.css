@@ -14,9 +14,8 @@ header {
   align-items: center;
   padding-right: 15;
 }
-.title
-{
-    color: #497174;
+.title {
+  color: #497174;
 }
 .welcome {
   display: flex;
@@ -24,10 +23,9 @@ header {
   align-items: center;
   width: 15%;
 }
-.Hi
-{
-    width: 200px;
-    font-size: 1.3rem;
+.Hi {
+  width: 200px;
+  font-size: 1.3rem;
 }
 .jokes-header .home-link {
   font-family: var(--font-display);
@@ -67,27 +65,25 @@ header {
   justify-content: space-evenly;
   align-items: center;
 }
-.main-child
-{
-    background-color: #497174;
-    color: #EFF5F5;
-    border: 1px solid black;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 4px;
-    height: 400px;
+.main-child {
+  background-color: var(--color-foreground);
+  color: #eff5f5;
+  border: 1px solid black;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 4px;
+  height: 400px;
 }
-.single-task
-{
-    background-color: #EFF5F5;
-    color: #497174;
-    margin-top: 10px;
-    width: 100%;
-    height: 45px;
-    padding: 10px;
-    border-radius: 4px;
+.single-task {
+  background-color: #eff5f5;
+  color: #497174;
+  margin-top: 10px;
+  width: 100%;
+  height: 45px;
+  padding: 10px;
+  border-radius: 4px;
 }
 .jokes-main .container {
   display: flex;
@@ -107,6 +103,31 @@ header {
   padding-top: 2rem;
   padding-bottom: 1rem;
   border-top: 1px solid var(--color-border);
+}
+.add-task-container {
+  backdrop-filter: blur(4px);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-task-form {
+  width: 30%;
+  height: max-content;
+  border-radius: 9px;
+  padding: 33px;
+  background-color: #eff5f5;
+  max-height: 500px;
+}
+.add-task-form > input {
+  border: 1px solid black;
+}
+.form-header {
+  display: flex;
+  justify-content: space-between;
 }
 
 @media print, (min-width: 640px) {

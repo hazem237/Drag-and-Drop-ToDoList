@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,16 +8,18 @@ datasource db {
 }
 
 model task {
- id  String @id @default(uuid())
- createdAt    DateTime @default(now())
- updatedAt    DateTime @updatedAt
- title String 
- content String
- UserId String
- ColumnsId String
- User   User     @relation(fields: [UserId], references: [id], onDelete: Cascade)
- Columns   Columns     @relation(fields: [ColumnsId], references: [id], onDelete: Cascade)
-} 
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String
+  isDone    Boolean
+  UserId    String
+  ColumnsId String
+  Columns   Columns  @relation(fields: [ColumnsId], references: [id], onDelete: Cascade)
+  User      User     @relation(fields: [UserId], references: [id], onDelete: Cascade)
+}
+
 model User {
   id           String   @id @default(uuid())
   createdAt    DateTime @default(now())
@@ -29,8 +28,9 @@ model User {
   passwordHash String
   tasks        task[]
 }
-model Columns{
-  id           String   @id @default(uuid())
-  title        String
-  tasks        task[]
+
+model Columns {
+  id    String @id @default(uuid())
+  title String
+  tasks task[]
 }
