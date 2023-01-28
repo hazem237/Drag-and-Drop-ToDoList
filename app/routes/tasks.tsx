@@ -42,7 +42,18 @@ export const loader = async ({ request }: LoaderArgs) => {
     columns,
   });
 };
-
+function getClassName(coulmnName: string): string {
+  switch (coulmnName) {
+    case "to Do":
+      return "to-Do-container";
+      break;
+    case "in Progress":
+      return "in-progress-container";
+      break;
+    default:
+      return "Done-container";
+  }
+}
 export default function tasks() {
   const { tasksListItems, columns, user } = useLoaderData() as loaderData;
   const [winReady, setwinReady] = useState(false);
@@ -102,12 +113,14 @@ export default function tasks() {
                         style={{
                           background: snapshot.isDraggingOver
                             ? "lightblue"
-                            : "lightgrey",
+                            : "white",
                         }}
                       >
-                        <h3>
-                          {column.title} {provided.placeholder}
-                        </h3>
+                        <div className={`${getClassName(column.title)}`}>
+                          <h3>
+                            {column.title} {provided.placeholder}
+                          </h3>
+                        </div>
                         <Link className="new" to={column.id}>
                           New +
                         </Link>

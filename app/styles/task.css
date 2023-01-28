@@ -27,35 +27,6 @@ header {
   width: 200px;
   font-size: 1.3rem;
 }
-.jokes-header .home-link {
-  font-family: var(--font-display);
-  font-size: 3rem;
-}
-
-.jokes-header .home-link a {
-  color: var(--color-foreground);
-}
-
-.jokes-header .home-link a:hover {
-  text-decoration: none;
-}
-
-.jokes-header .logo-medium {
-  display: none;
-}
-
-.jokes-header a:hover {
-  text-decoration-style: wavy;
-  text-decoration-thickness: 1px;
-}
-
-.jokes-header .user-info {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  white-space: nowrap;
-  background-color: pink;
-}
 
 .tasks-main {
   padding-top: 2rem;
@@ -66,17 +37,14 @@ header {
   align-items: center;
 }
 .main-child {
-  background-color: var(--color-foreground);
-  color: var(--color-foreground);
-  border: 1px solid black;
   width: 30%;
   display: flex;
   flex-direction: column;
-  padding: 14px;
+  padding: 17px;
   border-radius: 4px;
   height: max-content;
   min-height: 400px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
 }
 .new {
   background-color: #eff5f55a;
@@ -91,7 +59,7 @@ header {
   background-color: #4971745d;
 }
 .single-task {
-  background-color: #eff5f5;
+  background-color: #d8d8d863;
   color: #497174;
   margin-top: 10px;
   width: 100%;
@@ -101,6 +69,10 @@ header {
   display: flex;
   justify-content: space-between;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.single-task:hover {
+  background-color: rgba(128, 128, 128, 0.204);
 }
 .btn-container {
   background-color: red;
@@ -133,22 +105,27 @@ header {
   height: 100%;
   position: absolute;
   right: 0;
-  background-color: #eff5f5;
+  background-color: #ffffff;
+
   width: 40%;
   bottom: 0;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   transition: all 1s;
-  padding :23px
+  padding: 23px;
+  border-radius: 10px;
 }
 .single-task-container:hover {
   width: 42%;
 }
-.single-task-container-header
-{
+.single-task-container-header {
   width: 100%;
   padding: 19px;
   font-size: 24px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
 }
 .add-task-form {
   width: 30%;
@@ -165,7 +142,45 @@ header {
   display: flex;
   justify-content: space-between;
 }
-
+.to-Do-container,
+.in-progress-container,
+.Done-container {
+  color: rgb(79, 79, 79);
+  width: fit-content;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 3px;
+}
+.to-Do-container {
+  background-color: rgb(211, 139, 117);
+}
+.in-progress-container {
+  background-color: rgb(114, 190, 219);
+}
+.Done-container {
+  background-color: rgb(122, 198, 122);
+}
+.data-container {
+  height: 90%;
+  padding: 10px;
+}
+.data-container > h2 {
+  margin-bottom: 16px;
+  color: black;
+}
+.data-container > h5 {
+  margin-bottom: 16px;
+  color: rgb(145, 145, 145);
+}
+.single-task-form {
+  margin-top: 30px;
+}
+.single-task-form :first-child {
+  background-color: rgb(245, 132, 132);
+}
+.single-task-form :nth-child(2) {
+  background-color: rgba(128, 128, 128, 0.859);
+}
 
 @media print, (min-width: 640px) {
   .jokes-header .logo {

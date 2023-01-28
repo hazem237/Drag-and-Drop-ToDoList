@@ -51,6 +51,8 @@ export async function getSingleTask(id: string) {
       title: true,
       content: true,
       ColumnsId: true,
+      createdAt:true,
+      updatedAt:true
     },
   });
 }
@@ -58,4 +60,10 @@ export async function getSingleColumn(id) {
   return prisma.columns.findUnique({
     where: { id: id },
   });
+}
+
+export async function deleteTask(id) {
+  return prisma.task.delete({
+    where:{id:id}
+  })
 }
