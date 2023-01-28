@@ -10,9 +10,6 @@ export async function getTasks(request) {
   });
 }
 
-export async function getColumn() {
-  return prisma.columns.findMany();
-}
 export async function getToDoTasks(request) {
   return prisma.task.findMany({
     where: {
@@ -42,9 +39,23 @@ export async function createTask(task) {
   return prisma.task.create({ data: task });
 }
 
-export async function getRequiredCoulmn(coulmnId)
-{
+export async function getRequiredCoulmn(coulmnId) {
   return prisma.columns.findUnique({
-    where:{id:coulmnId}
-  })
+    where: { id: coulmnId },
+  });
+}
+export async function getSingleTask(id: string) {
+  return prisma.task.findUnique({
+    where: { id: id },
+    select: {
+      title: true,
+      content: true,
+      ColumnsId: true,
+    },
+  });
+}
+export async function getSingleColumn(id) {
+  return prisma.columns.findUnique({
+    where: { id: id },
+  });
 }

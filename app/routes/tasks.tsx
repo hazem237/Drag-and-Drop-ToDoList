@@ -8,7 +8,7 @@ import { Link, Outlet, useFetcher, useLoaderData } from "@remix-run/react";
 import React, { useEffect, useState } from "react";
 import {
   editTaskCoulmn,
-  getColumn,
+  getColumns,
   getTasks,
   getToDoTasks,
 } from "~/model/task.server";
@@ -28,13 +28,13 @@ export const links: LinksFunction = () => {
 
 type loaderData = {
   tasksListItems: Awaited<ReturnType<typeof getTasks>>;
-  columns: Awaited<ReturnType<typeof getColumn>>;
+  columns: Awaited<ReturnType<typeof getColumns>>;
   user: Awaited<ReturnType<typeof getUser>>;
 };
 
 export const loader = async ({ request }: LoaderArgs) => {
   const tasksListItems = await getTasks(request);
-  const columns = await getColumn();
+  const columns = await getColumns();
   const user = await getUser(request);
   return json<loaderData>({
     tasksListItems,
@@ -120,7 +120,8 @@ export default function tasks() {
                             >
                               {(provided) => {
                                 return (
-                                  <div
+                                  <Link
+                                    to={`./task/${task.id}`}
                                     ref={provided.innerRef}
                                     {...provided.dragHandleProps}
                                     {...provided.draggableProps}
@@ -135,7 +136,11 @@ export default function tasks() {
                                     ) : (
                                       task.title
                                     )}
-                                  </div>
+                                    {/* <div className="btn-container">
+                                      <button>Delete</button>
+                                      <button>Edit</button>
+                                    </div> */}
+                                  </Link>
                                 );
                               }}
                             </Draggable>
