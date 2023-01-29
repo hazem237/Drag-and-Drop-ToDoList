@@ -61,9 +61,9 @@ export default function tasks() {
     setwinReady(true);
   }, []);
 
-  const onDragEnd = (
+  const onDragEnd = async (
     result,
-    columns: Awaited<ReturnType<typeof getColumn>>
+    columns: Awaited<ReturnType<typeof getColumns>>
   ) => {
     if (!result.destination) return;
     const { source, destination } = result;
@@ -92,6 +92,7 @@ export default function tasks() {
       copiedtasks.splice(destination.index, 0, removed);
     }
   };
+
   return (
     <div className="task-layout">
       <Header username={user?.username} />

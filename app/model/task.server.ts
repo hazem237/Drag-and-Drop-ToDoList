@@ -67,3 +67,12 @@ export async function deleteTask(id) {
     where:{id:id}
   })
 }
+
+export async function updateTask (id , data){
+ return prisma.task.update({
+  where: {
+    id: id,
+  },
+  data: data
+ })
+}

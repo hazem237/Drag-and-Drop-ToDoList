@@ -184,11 +184,18 @@ header {
 .single-task-form {
   margin-top: 30px;
 }
-.single-task-form :first-child {
+/* .single-task-form :first-child {
   background-color: rgb(245, 132, 132);
 }
 .single-task-form :nth-child(2) {
   background-color: rgba(128, 128, 128, 0.859);
+} */
+.content-ta
+{
+  height: 200px;
+  color: black;
+  border: none;
+  display: none;
 }
 
 @media print, (min-width: 640px) {

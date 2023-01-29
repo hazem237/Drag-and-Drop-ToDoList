@@ -1,11 +1,11 @@
-import { ActionFunction, json, redirect } from "@remix-run/node";
+import { ActionFunction, json, LinksFunction, LoaderFunction, redirect } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import { LoaderFunction } from "react-router";
-import {
-  deleteTask,
-  getSingleColumn,
-  getSingleTask,
-} from "~/model/task.server";
+import { getSingleColumn, getSingleTask, updateTask } from "~/model/task.server";
+import stylesUrl from "~/styles/task.css";
+
+export const links: LinksFunction = () => {
+  return [{ rel: "stylesheet", href: stylesUrl }];
+};
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   const singleTask = await getSingleTask(params.id);
@@ -19,17 +19,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     id: params.id,
   });
 };
-export const action: ActionFunction = async ({ request, params }) => {
-  const form = await request.formData();
-  const SubmitBtn = form.get("subBtn");
-  if (SubmitBtn === "delete") {
-    await deleteTask(params.id);
-    return redirect("..");
-  } else {
-    console.log("Edit !!");
-  }
-  return null;
-};
 function getClassName(coulmnName: string): string {
   switch (coulmnName) {
     case "to Do":
@@ -42,6 +31,14 @@ function getClassName(coulmnName: string): string {
       return "Done-container";
   }
 }
+export const action: ActionFunction = async ({ request, params }) => {
+  const form = await request.formData();
+  const title=form.get("title")
+  const content = form.get("content")
+  await updateTask(params.id ,{title , content})
+  return redirect(`../task/${params.id}`);
+};
+
 const $id = () => {
   const { title, content, coulmnTitle, created, updated, id } = useLoaderData();
   return (
@@ -54,7 +51,17 @@ const $id = () => {
 
       <div className="data-container">
         <form className="single-task-form" method="post">
-          <h2>{title}</h2>
+          <input
+            name="title"
+            defaultValue={title}
+            style={{
+              width: "fit-content",
+              borderRadius: 4,
+              border: "1px solid gray",
+              padding: 14,
+              fontSize: "large",
+            }}
+          />
           <h5>
             Status:{" "}
             <span className={`${getClassName(coulmnTitle)}`}>
@@ -63,23 +70,17 @@ const $id = () => {
           </h5>
           <h5>Created at: {created}</h5>
           <h5>Last update: {updated}</h5>
-          <h4>{content}</h4>
-          <button
+          <textarea
+            name="content"
+            defaultValue={content}
+            style={{ color: "black", height: 150 }}
+          />
+          <button type="submit"
             className="button"
-            name="subBtn"
-            type="submit"
-            value="delete"
-            style={{ backgroundColor: " rgb(245, 132, 132)" }}
+            style={{ backgroundColor: " rgb(31, 128, 88, 0.859)" }}
           >
-            Delete Task{" "}
-          </button>
-          <Link
-            to={`../task/edit/${id}`}
-            className="button"
-            style={{ backgroundColor: " rgb(128, 128, 128, 0.859)" }}
-          >
-            Edit Task
-          </Link>
+            Save Changing
+          </button >
         </form>
       </div>
     </div>
