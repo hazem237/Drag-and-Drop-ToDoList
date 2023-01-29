@@ -5,12 +5,12 @@ import { uuid } from "uuidv4";
 import { createTask, getColumns, getTasks } from "~/model/task.server";
 import { getUser, getUserId } from "~/model/user.server";
 
-type task ={
-    title :   string |null
-    content:   string
-    UserId   : string
-    ColumnsId :string
-}
+type task = {
+  title: string | null;
+  content: string;
+  UserId: string;
+  ColumnsId: string;
+};
 
 export const action: ActionFunction = async ({ params, request }) => {
   const { coulmnID } = params;
@@ -18,15 +18,15 @@ export const action: ActionFunction = async ({ params, request }) => {
   const title = form.get("title");
   const content = form.get("content");
 
-  const newTask ={
-      title:title,
-      content:content,
-      UserId:await getUserId(request),
-      ColumnsId :params.id,
+  const newTask = {
+    title: title,
+    content: content,
+    UserId: await getUserId(request),
+    ColumnsId: params.id,
     //   User:await getUser(request),
     //   Coulmns:await getColumns()
-  }
-   await createTask(newTask)
+  };
+  await createTask(newTask);
   return redirect("..");
 };
 
@@ -40,9 +40,20 @@ const $id = () => {
           <Link to={".."}>X</Link>
         </div>
         <label>title</label>
-        <input type={"text"} required minLength={3} name="title" />
+        <input
+          type={"text"}
+          required
+          minLength={3}
+          name="title"
+          style={{ color: "black" }}
+        />
         <label>content</label>
-        <textarea required minLength={3} name="content" />
+        <textarea
+          required
+          minLength={3}
+          name="content"
+          style={{ color: "black" }}
+        />
         <button type="submit" className="button">
           Create task
         </button>

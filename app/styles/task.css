@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+:root {
+  font-family: 'Montserrat', sans-serif;;
+}
 .task-layout {
   display: flex;
   flex-direction: column;
   min-height: inherit;
   width: 100%;
   color: #497174;
+  
 }
 header {
   padding-top: 1rem;
@@ -16,6 +21,7 @@ header {
 }
 .title {
   color: #497174;
+  font-family: 'Pacifico', cursive;
 }
 .welcome {
   display: flex;
@@ -150,6 +156,9 @@ header {
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .to-Do-container {
   background-color: rgb(211, 139, 117);

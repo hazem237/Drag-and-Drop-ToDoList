@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@300&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Pacifico&display=swap');
 
 :root {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -23,8 +25,13 @@
 
 html {
   box-sizing: border-box;
-}
 
+}
+.site-name
+{
+  font-family: 'Pacifico', cursive;
+  
+}
 *,
 *::before,
 *::after {
@@ -41,9 +48,9 @@ body {
   margin: 0;
   color: var(--color-background);
   background-color: var(--color-foreground);
-  font-family: "Courier New", Courier, monospace;
   border: 1px solid rgb(164, 164, 164);
 }
+
 
 [data-light] {
   --color-invalid: hsl(356, 70%, 39%);
@@ -179,6 +186,7 @@ h5 {
 /* buttons */
 
 .button {
+  font-family: 'Montserrat', sans-serif;;
   --shadow-color: hsl(var(--hs-links) 30%);
   --shadow-size: 3px;
   -webkit-appearance: none;
@@ -391,4 +399,9 @@ label > [type="radio"] {
   background-color: hsla(356, 77%, 59%, 0.747);
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
+}
+
+.test {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 34px
 }

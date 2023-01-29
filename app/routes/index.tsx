@@ -10,8 +10,8 @@ export default function Index() {
   return (
     <div className="container">
       <div className="title-container">
-        <h1>Swapy</h1>
-        <h2>See your tasks done</h2>
+        <h1 className="site-name">Swapy</h1>
+        <h2 className="test">See your tasks done</h2>
       </div>
       <div className="btn-container">
         <Link to={"login"} className="button">
